@@ -24,7 +24,7 @@
 </p>
 <p align="center">
 
-<a href='https://facebook.com/sharer/sharer.php?u=https://github.com/clouddrove/terraform-aws-vpc'>
+<a href='https://facebook.com/sharer/sharer.php?u=https://github.com/clouddrove/terraform-aws-lightsail'>
   <img title="Share on Facebook" src="https://user-images.githubusercontent.com/50652676/62817743-4f64cb80-bb59-11e9-90c7-b057252ded50.png" />
 </a>
 <a href='https://www.linkedin.com/shareArticle?mini=true&title=Terraform+AWS+VPC&url=https://github.com/clouddrove/terraform-aws-vpc'>
@@ -65,59 +65,68 @@ This module has a few dependencies:
 ## Examples
 
 
-**IMPORTANT:** Since the `master` branch used in `source` varies based on new modifications, we suggest that you use the release versions [here](https://github.com/clouddrove/terraform-aws-vpc/releases).
+**IMPORTANT:** Since the `master` branch used in `source` varies based on new modifications, we suggest that you use the release versions [here](https://github.com/clouddrove/terraform-aws-lightsail/releases).
 
 
 ### Simple Example
 Here is an example of how you can use this module in your inventory structure:
   ```hcl
-  module "vpc" {
-      source      = "git::https://github.com/clouddrove/terraform-aws-vpc.git?ref=tags/0.13.0"
-      name        = "vpc"
-      application = "clouddrove"
-      environment = "test"
-      label_order = ["environment", "name", "application"]
-      cidr_block  = "10.0.0.0/16"
-    }
-  ```
+    module "vpc" {
+        source                  = "git::https://github.com/clouddrove/terraform-aws-lightsail.git?ref=tags/0.13.0"
+        name                    = "Lightsail"
+        application             = "clouddrove"
+        environment             = "test"
+        label_order             = ["environment", "name", "application"]
+        customer_email          = "abc@example.com"
+        customer_business_name  = "Clouddrove Inc."
+      }
+    
+    ```
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| application | Application \(e.g. `cd` or `clouddrove`\). | string | `""` | no |
-| attributes | Additional attributes \(e.g. `1`\). | list | `<list>` | no |
-| cidr\_block | CIDR for the VPC. | string | `""` | no |
-| enable\_classiclink | A boolean flag to enable/disable ClassicLink for the VPC. | bool | `"false"` | no |
-| enable\_classiclink\_dns\_support | A boolean flag to enable/disable ClassicLink DNS Support for the VPC. | bool | `"false"` | no |
-| enable\_dns\_hostnames | A boolean flag to enable/disable DNS hostnames in the VPC. | bool | `"true"` | no |
-| enable\_dns\_support | A boolean flag to enable/disable DNS support in the VPC. | bool | `"true"` | no |
-| enable\_flow\_log | Enable vpc\_flow\_log logs. | bool | `"false"` | no |
-| environment | Environment \(e.g. `prod`, `dev`, `staging`\). | string | `""` | no |
-| instance\_tenancy | A tenancy option for instances launched into the VPC. | string | `"default"` | no |
-| label\_order | Label order, e.g. `name`,`application`. | list | `<list>` | no |
-| managedby | ManagedBy, eg 'CloudDrove' or 'AnmolNagpal'. | string | `"anmol@clouddrove.com"` | no |
-| name | Name  \(e.g. `app` or `cluster`\). | string | `""` | no |
-| s3\_bucket\_arn | S3 ARN for vpc logs. | string | `""` | no |
-| tags | Additional tags \(e.g. map\(`BusinessUnit`,`XYZ`\). | map | `<map>` | no |
-| traffic\_type | Type of traffic to capture. Valid values: ACCEPT,REJECT, ALL. | string | `"ALL"` | no |
-| vpc\_enabled | Flag to control the vpc creation. | bool | `"true"` | no |
+|------|-------------|------|---------|:--------:|
+| attributes | Additional attributes (e.g. `1`) | `list(string)` | `[]` | no |
+| availability\_zone | The Availability Zone in which to create your instance | `string` | `"eu-west-2a"` | no |
+| blueprint\_id | n/a | `string` | `"wordpress"` | no |
+| bundle\_id | The bundle of specification information | `string` | `"micro_2_0"` | no |
+| create\_static\_ip | Create and attach a statis IP to the instance | `bool` | `true` | no |
+| customer\_business\_name | Customers business name, used for notifications and reporting | `string` | n/a | yes |
+| customer\_email | Customers email address, used to track owners of the platform, used for notifications and reporting | `string` | n/a | yes |
+| enable\_email\_alarm | Enable metric for StatusCheckFailed which will notify using email | `bool` | `true` | no |
+| environment | Environment, e.g. 'prod', 'staging', 'dev', 'pre-prod', 'UAT' | `string` | n/a | yes |
+| key\_pair\_name | The name of your key pair. Created in the Lightsail console (cannot use aws\_key\_pair at this time) | `string` | `""` | no |
+| name | Solution name, e.g. 'app' or 'jenkins' | `string` | n/a | yes |
+| namespace | Namespace, which could be your team, business name or abbreviation, e.g. 'mag' or 'tar' | `string` | n/a | yes |
+| tags | Additional tags (e.g. `map('BusinessUnit','XYZ')` | `map(string)` | `{}` | no |
+| use\_default\_key\_pair | Default key pair name will be used, you must keep 'key\_pair\_name' empty | `string` | `"false"` | no |
+| user\_data | launch script to configure server with additional user data | `string` | `""` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| igw\_id | The ID of the Internet Gateway. |
-| ipv6\_cidr\_block | The IPv6 CIDR block. |
-| tags | A mapping of tags to assign to the resource. |
-| vpc\_cidr\_block | The CIDR block of the VPC. |
-| vpc\_default\_network\_acl\_id | The ID of the network ACL created by default on VPC creation. |
-| vpc\_default\_route\_table\_id | The ID of the route table created by default on VPC creation. |
-| vpc\_default\_security\_group\_id | The ID of the security group created by default on VPC creation. |
-| vpc\_id | The ID of the VPC. |
-| vpc\_ipv6\_association\_id | The association ID for the IPv6 CIDR block. |
-| vpc\_main\_route\_table\_id | The ID of the main route table associated with this VPC. |
+| arn | n/a |
+| availability\_zone | n/a |
+| blueprint\_id | n/a |
+| bundle\_id | n/a |
+| created\_at | n/a |
+| encrypted\_fingerprint | n/a |
+| encrypted\_private\_key | n/a |
+| fingerprint | n/a |
+| id | n/a |
+| ip\_address | n/a |
+| key\_arn | n/a |
+| key\_id | n/a |
+| key\_pair\_name | n/a |
+| private\_key | n/a |
+| public\_key | n/a |
+| staticip\_arn | n/a |
+| staticip\_support\_code | n/a |
+| user\_data | n/a |
 
+---
 
 
 
@@ -132,9 +141,9 @@ You need to run the following command in the testing folder:
 
 
 ## Feedback
-If you come accross a bug or have any feedback, please log it in our [issue tracker](https://github.com/clouddrove/terraform-aws-vpc/issues), or feel free to drop us an email at [hello@clouddrove.com](mailto:hello@clouddrove.com).
+If you come accross a bug or have any feedback, please log it in our [issue tracker](https://github.com/clouddrove/terraform-aws-lightsail/issues), or feel free to drop us an email at [hello@clouddrove.com](mailto:hello@clouddrove.com).
 
-If you have found it worth your time, go ahead and give us a ★ on [our GitHub](https://github.com/clouddrove/terraform-aws-vpc)!
+If you have found it worth your time, go ahead and give us a ★ on [our GitHub](https://github.com/clouddrove/terraform-aws-lightsail)!
 
 ## About us
 
