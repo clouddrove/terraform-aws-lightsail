@@ -7,6 +7,6 @@ module "lightsail" {
   namespace              = "anmol"
   environment            = "prod"
   name                   = "clouddrove"
-  customer_email         = "abc@example.com"
+  customer_email         = "abc@clouddrove.com"
   customer_business_name = "Clouddrove Inc."
 }

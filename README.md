@@ -77,7 +77,7 @@ Here is an example of how you can use this module in your inventory structure:
         application             = "clouddrove"
         environment             = "test"
         label_order             = ["environment", "name", "application"]
-        customer_email          = "abc@example.com"
+        customer_email          = "abc@clouddrove.com"
         customer_business_name  = "Clouddrove Inc."
       }
     
