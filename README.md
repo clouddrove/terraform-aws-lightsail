@@ -4,11 +4,11 @@
 
 
 <h1 align="center">
-    Terraform AWS VPC
+    Terraform AWS Lightsail
 </h1>
 
 <p align="center" style="font-size: 1.2rem;">
-    Terraform module to create VPC resource on AWS.
+    Terraform module to create Lightsail instance, Lightsail Key Pair (Optional), Lightsail Static IP (Optional) resource on AWS.
      </p>
 
 <p align="center">
@@ -27,10 +27,10 @@
 <a href='https://facebook.com/sharer/sharer.php?u=https://github.com/clouddrove/terraform-aws-lightsail'>
   <img title="Share on Facebook" src="https://user-images.githubusercontent.com/50652676/62817743-4f64cb80-bb59-11e9-90c7-b057252ded50.png" />
 </a>
-<a href='https://www.linkedin.com/shareArticle?mini=true&title=Terraform+AWS+VPC&url=https://github.com/clouddrove/terraform-aws-vpc'>
+<a href='https://www.linkedin.com/shareArticle?mini=true&title=Terraform+AWS+VPC&url=https://github.com/clouddrove/terraform-aws-lightsail'>
   <img title="Share on LinkedIn" src="https://user-images.githubusercontent.com/50652676/62817742-4e339e80-bb59-11e9-87b9-a1f68cae1049.png" />
 </a>
-<a href='https://twitter.com/intent/tweet/?text=Terraform+AWS+VPC&url=https://github.com/clouddrove/terraform-aws-vpc'>
+<a href='https://twitter.com/intent/tweet/?text=Terraform+AWS+VPC&url=https://github.com/clouddrove/terraform-aws-lightsail'>
   <img title="Share on Twitter" src="https://user-images.githubusercontent.com/50652676/62817740-4c69db00-bb59-11e9-8a79-3580fbbf6d5c.png" />
 </a>
 
@@ -83,52 +83,21 @@ Here is an example of how you can use this module in your inventory structure:
     
     ```
 
-## Inputs
-
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| attributes | Additional attributes (e.g. `1`) | `list(string)` | `[]` | no |
-| availability\_zone | The Availability Zone in which to create your instance | `string` | `"eu-west-2a"` | no |
-| blueprint\_id | n/a | `string` | `"wordpress"` | no |
-| bundle\_id | The bundle of specification information | `string` | `"micro_2_0"` | no |
-| create\_static\_ip | Create and attach a statis IP to the instance | `bool` | `true` | no |
-| customer\_business\_name | Customers business name, used for notifications and reporting | `string` | n/a | yes |
-| customer\_email | Customers email address, used to track owners of the platform, used for notifications and reporting | `string` | n/a | yes |
-| enable\_email\_alarm | Enable metric for StatusCheckFailed which will notify using email | `bool` | `true` | no |
-| environment | Environment, e.g. 'prod', 'staging', 'dev', 'pre-prod', 'UAT' | `string` | n/a | yes |
-| key\_pair\_name | The name of your key pair. Created in the Lightsail console (cannot use aws\_key\_pair at this time) | `string` | `""` | no |
-| name | Solution name, e.g. 'app' or 'jenkins' | `string` | n/a | yes |
-| namespace | Namespace, which could be your team, business name or abbreviation, e.g. 'mag' or 'tar' | `string` | n/a | yes |
-| tags | Additional tags (e.g. `map('BusinessUnit','XYZ')` | `map(string)` | `{}` | no |
-| use\_default\_key\_pair | Default key pair name will be used, you must keep 'key\_pair\_name' empty | `string` | `"false"` | no |
-| user\_data | launch script to configure server with additional user data | `string` | `""` | no |
-
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| arn | n/a |
-| availability\_zone | n/a |
-| blueprint\_id | n/a |
-| bundle\_id | n/a |
-| created\_at | n/a |
-| encrypted\_fingerprint | n/a |
-| encrypted\_private\_key | n/a |
-| fingerprint | n/a |
-| id | n/a |
-| ip\_address | n/a |
-| key\_arn | n/a |
-| key\_id | n/a |
-| key\_pair\_name | n/a |
-| private\_key | n/a |
-| public\_key | n/a |
-| staticip\_arn | n/a |
-| staticip\_support\_code | n/a |
-| user\_data | n/a |
-
----
-
-
+| arn | The ARN of the instance. |
+| az | The availability zone of the instance. |
+| instance\_count | The count of instances. |
+| instance\_id | The instance ID. |
+| ipv6\_addresses | A list of assigned IPv6 addresses. |
+| key\_name | The key name of the instance. |
+| placement\_group | The placement group of the instance. |
+| private\_ip | Private IP of instance. |
+| public\_ip | Public IP of instance \(or EIP\). |
+| subnet\_id | The EC2 subnet ID. |
+| vpc\_security\_group\_ids | The associated security groups in non-default VPC. |
 
 ## Testing
 In this module testing is performed with [terratest](https://github.com/gruntwork-io/terratest) and it creates a small piece of infrastructure, matches the output like ARN, ID and Tags name etc and destroy infrastructure in your AWS account. This testing is written in GO, so you need a [GO environment](https://golang.org/doc/install) in your system.

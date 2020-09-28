@@ -1,5 +1,5 @@
 # Managed By : CloudDrove
-# Description : This Script is used to create Lightsail instance, Lightsail Key Pair (Optional), Lightsail Static IP (Optional), Metric alarm (Optional).
+# Description : This Script is used to create Lightsail instance, Lightsail Key Pair (Optional), Lightsail Static IP (Optional).
 # Copyright @ CloudDrove. All Right Reserved.
 
 #Module      : Label
@@ -15,18 +15,9 @@ module "labels" {
   managedby   = var.managedby
   label_order = var.label_order
   attributes  = var.attributes
-  tags        = merge(var.tags,local.tags)
 }
 
 data "aws_region" "default" {
-}
-
-locals {
-  tags = map(
-    "Application", var.name, 
-    "CustomerEmail", var.customer_email, 
-    "CustomerBusinessName", var.customer_business_name,
-  )
 }
 
 resource "aws_lightsail_instance" "instance" {
