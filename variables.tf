@@ -17,7 +17,7 @@ variable "application" {
   description = "Application (e.g. `cd` or `clouddrove`)."
 }
 
-vvariable "name" {
+variable "name" {
   type        = string
   default     = ""
   description = "Name  (e.g. `app` or `cluster`)."
@@ -50,19 +50,19 @@ variable "tags" {
 
 variable "availability_zone" {
   type        = string
-  default     = "eu-west-2a"
+  default     = "ap-south-1a"
   description = "The Availability Zone in which to create your instance"
 }
 
 variable "blueprint_id" {
   type        = string
-  default     = "wordpress"
+  default     = "ubuntu_16_04_2"
   description = ""
 }
 
 variable "bundle_id" {
   type        = string
-  default     = "micro_2_0"
+  default     = "micro_2_1"
   description = "The bundle of specification information"
 }
 
@@ -74,7 +74,7 @@ variable "key_pair_name" {
 
 variable "use_default_key_pair" {
   type        = string
-  default     = "false"
+  default     = "true"
   description = "Default key pair name will be used, you must keep 'key_pair_name' empty"
 }
 

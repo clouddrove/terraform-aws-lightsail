@@ -10,7 +10,6 @@ module "labels" {
   source = "git::https://github.com/clouddrove/terraform-labels.git?ref=tags/0.12.0"
 
   name        = var.name
-  namespace   = var.namespace
   application = var.application
   environment = var.environment
   managedby   = var.managedby
@@ -31,11 +30,11 @@ locals {
 }
 
 resource "aws_lightsail_instance" "instance" {
-  name              = module.labels.id
+  name              = module.labels.name
   availability_zone = var.availability_zone
   blueprint_id      = var.blueprint_id
   bundle_id         = var.bundle_id
-  key_pair_name     = var.key_pair_name == "" && var.use_default_key_pair == false ? "${module.labels.id}-keypair" : var.key_pair_name
+  key_pair_name     = var.key_pair_name == "" && var.use_default_key_pair == false ? "${module.labels.name}-keypair" : var.key_pair_name
   tags              = module.labels.tags
   depends_on        = [aws_lightsail_key_pair.instance]
 }
@@ -48,20 +47,10 @@ resource "aws_lightsail_static_ip_attachment" "instance" {
 
 resource "aws_lightsail_static_ip" "instance" {
   count = var.create_static_ip == true ? 1 : 0
-  name  = "${module.labels.id}-IP"
+  name  = "${module.labels.name}-IP"
 }
 
 resource "aws_lightsail_key_pair" "instance" {
   count = var.key_pair_name == "" && var.use_default_key_pair == false ? 1 : 0
-  name  = "${module.labels.id}-keypair"
-}
-
-resource "null_resource" "email_alarm" {
-  count = var.enable_email_alarm == true ? 1 : 0
-  provisioner "local-exec" {
-    command = <<EOT
-      aws lightsail put-alarm --contact-protocols Email --alarm-name ${module.labels.id}-status-checks --metric-name StatusCheckFailed --monitored-resource-name ${module.labels.id} --comparison-operator GreaterThanThreshold --threshold 0 --evaluation-periods 1 --region ${data.aws_region.default.name}
-    EOT 
-  }
-  depends_on = [aws_lightsail_instance.instance]
+  name  = "${module.labels.name}-keypair"
 }
