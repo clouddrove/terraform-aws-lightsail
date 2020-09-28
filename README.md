@@ -79,22 +79,7 @@ Here is examples of how you can use this module in your inventory structure:
       label_order = ["environment", "application", "name"]
     }
 ```
-## Outputs
 
-| Name | Variable Name  |
-| ---------------- | --------------- |
-| Environment Name | $env_name |
-| Violation Count | $num_violations |
-| Resource Count | $num_resources |
-| High-Severity Violations | $high |
-| Medium-Severity Violations | $medium |
-| Low-Severity Violations | $low |
-| Native Resources | $native |
-| Inherited Resources | $inherited |
-| Drift | $drift |
-| IaC Drift | $iacdrift |
-| Cloud Drift | $clouddrift |
-| has-errors | $has_errors |
 
 ## Output
 
