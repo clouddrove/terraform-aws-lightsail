@@ -1,14 +1,21 @@
 #Module      : LABEL
 #Description : Terraform label module variables.
 
-variable "namespace" {
-  type        = string
-  description = "Namespace, which could be your team, business name or abbreviation, e.g. 'mag' or 'tar'"
-}
-
 variable "environment" {
   type        = string
   description = "Environment, e.g. 'prod', 'staging', 'dev', 'pre-prod', 'UAT'"
+}
+
+variable "label_order" {
+  type        = list
+  default     = []
+  description = "Label order, e.g. `name`,`application`."
+}
+
+variable "delimiter" {
+  type        = string
+  default     = "-"
+  description = "Delimiter to be used between `organization`, `environment`, `name` and `attributes`."
 }
 
 variable "application" {
@@ -23,17 +30,10 @@ variable "name" {
   description = "Name  (e.g. `app` or `cluster`)."
 }
 
-
 variable "managedby" {
   type        = string
   default     = "anmol@clouddrove.com"
   description = "ManagedBy, eg 'CloudDrove' or 'AnmolNagpal'."
-}
-
-variable "label_order" {
-  type        = list
-  default     = []
-  description = "Label order, e.g. `name`,`application`."
 }
 
 variable "attributes" {
@@ -47,6 +47,7 @@ variable "tags" {
   default     = {}
   description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)."
 }
+
 
 variable "availability_zone" {
   type        = string
@@ -90,18 +91,8 @@ variable "create_static_ip" {
   description = "Create and attach a statis IP to the instance"
 }
 
-variable "enable_email_alarm" {
+variable "lightsail_enabled" {
   type        = bool
   default     = true
-  description = "Enable metric for StatusCheckFailed which will notify using email"
-}
-
-variable "customer_email" {
-  type        = string
-  description = "Customers email address, used to track owners of the platform, used for notifications and reporting"
-}
-
-variable "customer_business_name" {
-  type        = string
-  description = "Customers business name, used for notifications and reporting"
+  description = "Flag to control the lightsail instance creation."
 }

@@ -65,39 +65,54 @@ This module has a few dependencies:
 ## Examples
 
 
-**IMPORTANT:** Since the `master` branch used in `source` varies based on new modifications, we suggest that you use the release versions [here](https://github.com/clouddrove/terraform-aws-lightsail/releases).
+**IMPORTANT:** Since the `master` branch used in `source` varies based on new modifications, we suggest that you use the release versions [here](https://github.com/clouddrove/terraform-aws-ec2/releases).
 
 
-### Simple Example
-Here is an example of how you can use this module in your inventory structure:
-  ```hcl
-    module "vpc" {
-        source                  = "git::https://github.com/clouddrove/terraform-aws-lightsail.git?ref=tags/0.13.0"
-        name                    = "Lightsail"
-        application             = "clouddrove"
-        environment             = "test"
-        label_order             = ["environment", "name", "application"]
-        customer_email          = "abc@clouddrove.com"
-        customer_business_name  = "Clouddrove Inc."
-      }
-    
-    ```
-
+Here is examples of how you can use this module in your inventory structure:
+### Basic Example
+```hcl
+    module "lightsail" {
+      source      = "../"
+      environment = "prod"
+      name        = "lightsail"
+      application = "clouddrove"
+      label_order = ["environment", "application", "name"]
+    }
+```
 ## Outputs
+
+| Name | Variable Name  |
+| ---------------- | --------------- |
+| Environment Name | $env_name |
+| Violation Count | $num_violations |
+| Resource Count | $num_resources |
+| High-Severity Violations | $high |
+| Medium-Severity Violations | $medium |
+| Low-Severity Violations | $low |
+| Native Resources | $native |
+| Inherited Resources | $inherited |
+| Drift | $drift |
+| IaC Drift | $iacdrift |
+| Cloud Drift | $clouddrift |
+| has-errors | $has_errors |
+
+## Output
 
 | Name | Description |
 |------|-------------|
-| arn | The ARN of the instance. |
-| az | The availability zone of the instance. |
-| instance\_count | The count of instances. |
-| instance\_id | The instance ID. |
-| ipv6\_addresses | A list of assigned IPv6 addresses. |
-| key\_name | The key name of the instance. |
-| placement\_group | The placement group of the instance. |
-| private\_ip | Private IP of instance. |
-| public\_ip | Public IP of instance \(or EIP\). |
-| subnet\_id | The EC2 subnet ID. |
-| vpc\_security\_group\_ids | The associated security groups in non-default VPC. |
+| arn | The ARN of the lightsail instance. |
+| id | The lightsail instance id. |
+| created\_at | When instances created. |
+| availability\_zone | availability zone. |
+| blueprint\_id | Instance Blueprint id. |
+| bundle\_id | The bundle id of instance. |
+| key\_pair\_name | The key pair name. |
+| user\_data | User data of instance. |
+| static\_ip\_arn | Static IP of lightsail instance arn \(or EIP\). |
+| key\_arn | Key arn. |
+| staticip\_support\_code | Static Ip support code of the lightsail instance. |
+
+
 
 ## Testing
 In this module testing is performed with [terratest](https://github.com/gruntwork-io/terratest) and it creates a small piece of infrastructure, matches the output like ARN, ID and Tags name etc and destroy infrastructure in your AWS account. This testing is written in GO, so you need a [GO environment](https://golang.org/doc/install) in your system.
@@ -106,6 +121,7 @@ You need to run the following command in the testing folder:
 ```hcl
   go test -run Test
 ```
+
 
 
 
