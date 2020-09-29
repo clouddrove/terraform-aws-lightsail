@@ -95,8 +95,7 @@ Here is examples of how you can use this module in your inventory structure:
 | key\_pair\_name | The key pair name. |
 | user\_data | User data of instance. |
 | static\_ip\_arn | Static IP of lightsail instance arn \(or EIP\). |
-| key\_arn | Key arn. |
-| staticip\_support\_code | Static Ip support code of the lightsail instance. |
+
 
 
 
