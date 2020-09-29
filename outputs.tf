@@ -39,35 +39,3 @@ output "staticip_arn" {
 output "ip_address" {
   value = aws_lightsail_static_ip.instance.*.ip_address
 }
-
-output "staticip_support_code" {
-  value = aws_lightsail_static_ip.instance.*.support_code
-}
-
-output "key_id" {
-  value = aws_lightsail_key_pair.instance.*.id
-}
-
-output "key_arn" {
-  value = aws_lightsail_key_pair.instance.*.arn
-}
-
-output "fingerprint" {
-  value = aws_lightsail_key_pair.instance.*.fingerprint
-}
-
-output "public_key" {
-  value = aws_lightsail_key_pair.instance.*.public_key
-}
-
-output "private_key" {
-  value = aws_lightsail_key_pair.instance.*.private_key
-}
-
-output "encrypted_private_key" {
-  value = aws_lightsail_key_pair.instance.*.encrypted_private_key
-}
-
-output "encrypted_fingerprint" {
-  value = aws_lightsail_key_pair.instance.*.encrypted_fingerprint
-} 

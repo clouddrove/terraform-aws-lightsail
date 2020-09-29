@@ -38,34 +38,3 @@ output "ip_address" {
   value = module.lightsail.ip_address
 }
 
-output "staticip_support_code" {
-  value = module.lightsail.staticip_support_code
-}
-
-output "key_id" {
-  value = module.lightsail.key_id
-}
-
-output "key_arn" {
-  value = module.lightsail.key_arn
-}
-
-output "fingerprint" {
-  value = module.lightsail.fingerprint
-}
-
-output "public_key" {
-  value = module.lightsail.public_key
-}
-
-output "private_key" {
-  value = module.lightsail.private_key
-}
-
-output "encrypted_private_key" {
-  value = module.lightsail.encrypted_private_key
-}
-
-output "encrypted_fingerprint" {
-  value = module.lightsail.encrypted_fingerprint
-}

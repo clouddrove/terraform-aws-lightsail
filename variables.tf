@@ -67,11 +67,6 @@ variable "bundle_id" {
   description = "The bundle of specification information"
 }
 
-variable "key_pair_name" {
-  type        = string
-  default     = ""
-  description = "The name of your key pair. Created in the Lightsail console (cannot use aws_key_pair at this time)"
-}
 
 variable "use_default_key_pair" {
   type        = string
@@ -95,4 +90,10 @@ variable "lightsail_enabled" {
   type        = bool
   default     = true
   description = "Flag to control the lightsail instance creation."
+}
+
+variable "key_pair_name" {
+  type        = string
+  default     = ""
+  description = "The key name to use for the instance."
 }

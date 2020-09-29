@@ -76,6 +76,7 @@ Here is examples of how you can use this module in your inventory structure:
       environment = "prod"
       name        = "lightsail"
       application = "clouddrove"
+      key_pair_name = "Demo"
       label_order = ["environment", "application", "name"]
     }
 ```
