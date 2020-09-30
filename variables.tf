@@ -58,7 +58,7 @@ variable "availability_zone" {
 variable "blueprint_id" {
   type        = string
   default     = "ubuntu_16_04_2"
-  description = ""
+  description = "The ID for a virtual private server image"
 }
 
 variable "bundle_id" {
@@ -96,4 +96,16 @@ variable "key_pair_name" {
   type        = string
   default     = ""
   description = "The key name to use for the instance."
+}
+
+variable "instance_count" {
+  type        = number
+  default     = 3
+  description = "Number of instances to launch."
+}
+
+variable "instance_enabled" {
+  type        = bool
+  default     = true
+  description = "Flag to control the instance creation."
 }
