@@ -23,6 +23,10 @@ func Test(t *testing.T) {
 	// To clean up any resources that have been created, run 'terraform destroy' towards the end of the test
 	defer terraform.Destroy(t, terraformOptions)
 
-	
+	// To get the value of an output variable, run 'terraform output'
+	Id := terraform.Output(t, terraformOptions, "blueprint_id")
+
+	// Check that we get back the outputs that we expect
+	assert.Contains(t, Id, "micro_2_1")
 
 }
