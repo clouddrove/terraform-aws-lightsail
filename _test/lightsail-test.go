@@ -24,9 +24,9 @@ func Test(t *testing.T) {
 	defer terraform.Destroy(t, terraformOptions)
 
 	// To get the value of an output variable, run 'terraform output'
-	Id := terraform.Output(t, terraformOptions, "id")
+	Id := terraform.Output(t, terraformOptions, "blueprint_id")
 
 	// Check that we get back the outputs that we expect
-	assert.Contains(t, Id, "i-")
+	assert.Contains(t, Id, "micro_2_1")
 
 }
