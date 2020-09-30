@@ -28,8 +28,6 @@ func Test(t *testing.T) {
 	Tags := terraform.OutputMap(t, terraformOptions, "tags")
 
 	// Check that we get back the outputs that we expect
-	assert.Equal(t, "test-clouddrove-lightsail", Tags["Name"])
-	assert.Contains(t, Id, "module "lightsail" {
-		")
+	assert.Contains(t, Id, "i-")
 
 }
