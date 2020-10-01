@@ -100,7 +100,7 @@ variable "key_pair_name" {
 
 variable "instance_count" {
   type        = number
-  default     = 3
+  default     = 1
   description = "Number of instances to launch."
 }
 
