@@ -24,7 +24,7 @@ data "aws_region" "default" {
 #Description : Terraform module to create an Lightsail instance resource on AWS with static IP and attachment.
 resource "aws_lightsail_instance" "instance" {
   count = var.instance_enabled == true ? var.instance_count : 0
-  name              = format("%s%s", module.labels.id,  (count.index))
+  name              = format("%s%s%s", module.labels.id,  "-", (count.index))
   availability_zone = var.availability_zone
   blueprint_id      = var.blueprint_id
   bundle_id         = var.bundle_id
@@ -40,15 +40,15 @@ resource "aws_lightsail_instance" "instance" {
 }
 
 resource "aws_lightsail_static_ip_attachment" "instance" {
-  count          = var.create_static_ip == true ? var.instance_count : 0
+  count          = var.instance_enabled == true ? var.instance_count : 0
   static_ip_name = aws_lightsail_static_ip.instance[count.index].id
   instance_name  = aws_lightsail_instance.instance[count.index].id
   
 }
 
 resource "aws_lightsail_static_ip" "instance" {
-  count = var.create_static_ip == true ? var.instance_count : 0
-  name  =  format("%s%s", "${module.labels.id}-IP",  (count.index))
+  count = var.instance_enabled == true ? var.instance_count : 0
+  name  =  format("%s%s%s", "${module.labels.id}-IP", "-", (count.index)) 
   
 }
 resource "aws_lightsail_key_pair" "instance" {
