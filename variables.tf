@@ -82,7 +82,7 @@ variable "user_data" {
 
 variable "create_static_ip" {
   type        = bool
-  default     = true
+  default     = false
   description = "Create and attach a statis IP to the instance"
 }
 
