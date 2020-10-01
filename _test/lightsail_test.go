@@ -24,9 +24,10 @@ func Test(t *testing.T) {
 	defer terraform.Destroy(t, terraformOptions)
 
 	// To get the value of an output variable, run 'terraform output'
-	Id := terraform.Output(t, terraformOptions, "blueprint_id")
+	Tags := terraform.OutputMap(t, terraformOptions, "tags")
+	Id := terraform.Output(t, terraformOptions, "id")
 
 	// Check that we get back the outputs that we expect
-	assert.Contains(t, Id, "micro_2_1")
-
+	assert.Equal(t, "test-clouddrove-vpc", Tags["Name"])
+	assert.Contains(t, Id, "vpc")
 }

@@ -4,6 +4,12 @@ output "arn" {
   value = aws_lightsail_instance.instance.*.arn
 }
 
+output "tags" {
+  value       = module.labels.tags
+  description = "A mapping of tags to assign to the resource."
+}
+
+
 output "id" {
   value = aws_lightsail_instance.instance.*.id
 }
