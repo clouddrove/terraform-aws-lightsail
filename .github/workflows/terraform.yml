@@ -40,13 +40,13 @@ jobs:
               curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
               dep ensure
           else
-            go get -v -t -d ./...  
+            go get -v -t -d ./...
           fi
-      
+
       - name: Test
         working-directory: ./_test
-        run: go test 
-      
+        run: go test
+
       - name: 'Terraform Init'
         uses: hashicorp/terraform-github-actions@master
         with:

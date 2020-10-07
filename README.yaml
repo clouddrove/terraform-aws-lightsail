@@ -6,7 +6,7 @@
 
 
 # Name of this project
-name : Terraform AWS Lightsail
+name: Terraform AWS Lightsail
 
 # License of this project
 license: "MIT"
@@ -25,24 +25,25 @@ badges:
 
 #  description of this project
 description: |-
-  Terraform module to create Lightsail instance, Lightsail Key Pair (Optional), Lightsail Static IP (Optional).
+  Terraform module to create Lightsail instance, Lightsail Key Pair
+  (Optional), Lightsail Static IP (Optional).
 
 # extra content
 include:
   - "terraform.md"
 
 # How to use this project
-usage : |-
+usage: |-
   ### Simple Example
   Here is an example of how you can use this module in your inventory structure:
-    ```hcl
-    module "lightsail" {
+  ```hcl
+  # Github = git::https://github.com
+      module "lightsail" {
         source        = "../"
         environment   = "prod"
         name          = "lightsail"
         key_pair_name = "testing"
         application   = "clouddrove"
         label_order   = ["environment", "application", "name"]
-}
-    
-    ```
+     }
+  ```

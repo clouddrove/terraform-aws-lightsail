@@ -1,4 +1,4 @@
-#Module      : Lightsail 
+#Module      : Lightsail
 #Description : Terraform module to create Lightsail instance, Lightsail Key Pair (Optional), Lightsail Static IP (Optional) resource on AWS.
 output "arn" {
   value = aws_lightsail_instance.instance.*.arn
