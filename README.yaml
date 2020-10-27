@@ -33,15 +33,14 @@ include:
   - "terraform.md"
 
 # How to use this project
-# yamllint disable rule:line-length
 usage: |-
   ### Simple Example
   Here is an example of how you can use this module in your inventory structure:
   ```hcl
-  # Github =
       module "lightsail" {
-        source        = "git::https://github.com/clouddrove/terraform-lightsail.git?ref=tags/0.13.0"
-        environment   = "prod"
+        source        = "clouddrove/lightsail/aws"
+        version       = "0.13.0"
+        environment   = "test"
         name          = "lightsail"
         key_pair_name = "testing"
         application   = "clouddrove"

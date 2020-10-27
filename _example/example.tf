@@ -5,9 +5,9 @@ provider "aws" {
 
 module "lightsail" {
   source        = "../"
-  environment   = "prod"
-  name          = "lightsail"
+  environment   = "test"
+  name          = "clouddrove"
   key_pair_name = "demo"
-  application   = "clouddrove"
+  application   = "lightsail"
   label_order   = ["environment", "application", "name"]
 }
