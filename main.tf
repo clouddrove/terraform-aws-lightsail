@@ -53,8 +53,8 @@ resource "aws_lightsail_static_ip" "instance" {
 
 }
 resource "aws_lightsail_key_pair" "instance" {
-  count = var.instance_enabled && var.key_pair_name == "" && var.use_default_key_pair == false ? 1 : 0
-  name  = format("%s-keypair", module.labels.id)
-  pgp_key = var.pgp_key
+  count      = var.instance_enabled && var.key_pair_name == "" && var.use_default_key_pair == false ? 1 : 0
+  name       = format("%s-keypair", module.labels.id)
+  pgp_key    = var.pgp_key
   public_key = var.public_key == "" ? file(var.key_path) : var.public_key
 }
