@@ -24,10 +24,8 @@ func Test(t *testing.T) {
 	defer terraform.Destroy(t, terraformOptions)
 
 	// To get the value of an output variable, run 'terraform output'
-	Tags := terraform.OutputMap(t, terraformOptions, "tags")
 	Id := terraform.Output(t, terraformOptions, "id")
 
 	// Check that we get back the outputs that we expect
-	assert.Equal(t, "test-clouddrove-vpc", Tags["Name"])
-	assert.Contains(t, Id, "vpc")
+	assert.Equal(t, "[\n  \"test-lightsail-clouddrove-0\",\n]", Id)
 }

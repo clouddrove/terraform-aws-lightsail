@@ -7,7 +7,7 @@
 #              for resources. You can use terraform-labels to implement a strict naming
 #              convention.
 module "labels" {
-  source = "git::https://github.com/clouddrove/terraform-labels.git?ref=tags/0.12.0"
+  source = "git::https://github.com/clouddrove/terraform-labels.git?ref=tags/0.13.0"
 
   name        = var.name
   application = var.application
@@ -49,10 +49,12 @@ resource "aws_lightsail_static_ip_attachment" "instance" {
 
 resource "aws_lightsail_static_ip" "instance" {
   count = var.instance_enabled && var.create_static_ip ? var.instance_count : 0
-  name  = format("%s%s%s", "${module.labels.id}-IP", "-", (count.index))
+  name  = format("%s-IP%s%s", module.labels.id, "-", (count.index))
 
 }
 resource "aws_lightsail_key_pair" "instance" {
-  count = var.instance_enabled && var.key_pair_name == "" && var.use_default_key_pair == false ? 1 : 0
-  name  = "${module.labels.id}-keypair"
+  count      = var.instance_enabled && var.key_pair_name == "" && var.use_default_key_pair == false ? 1 : 0
+  name       = format("%s-keypair", module.labels.id)
+  pgp_key    = var.pgp_key
+  public_key = var.public_key == "" ? file(var.key_path) : var.public_key
 }

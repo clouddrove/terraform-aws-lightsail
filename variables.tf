@@ -69,8 +69,8 @@ variable "bundle_id" {
 
 
 variable "use_default_key_pair" {
-  type        = string
-  default     = "true"
+  type        = bool
+  default     = true
   description = "Default key pair name will be used, you must keep 'key_pair_name' empty"
 }
 
@@ -108,4 +108,21 @@ variable "instance_enabled" {
   type        = bool
   default     = true
   description = "Flag to control the instance creation."
+}
+
+variable "pgp_key" {
+  default     = null
+  description = "Flag to control the instance creation."
+}
+
+variable "public_key" {
+  type        = string
+  default     = ""
+  description = "The public key material. This public key will be imported into Lightsail."
+}
+
+variable "key_path" {
+  type        = string
+  default     = ""
+  description = "Public key path  (e.g. `~/.ssh/id_rsa.pub`)."
 }
