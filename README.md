@@ -72,10 +72,10 @@ This module has a few dependencies:
 ### Simple Example
 Here is an example of how you can use this module in your inventory structure:
 ```hcl
-# Github =
     module "lightsail" {
-      source        = "git::https://github.com/clouddrove/terraform-lightsail.git?ref=tags/0.13.0"
-      environment   = "prod"
+      source        = "clouddrove/lightsail/aws"
+      version       = "0.13.0"
+      environment   = "test"
       name          = "lightsail"
       key_pair_name = "testing"
       application   = "clouddrove"
@@ -103,12 +103,15 @@ Here is an example of how you can use this module in your inventory structure:
 | instance\_count | Number of instances to launch. | `number` | `1` | no |
 | instance\_enabled | Flag to control the instance creation. | `bool` | `true` | no |
 | key\_pair\_name | The key name to use for the instance. | `string` | `""` | no |
+| key\_path | Public key path  (e.g. `~/.ssh/id_rsa.pub`). | `string` | `""` | no |
 | label\_order | Label order, e.g. `name`,`application`. | `list` | `[]` | no |
 | lightsail\_enabled | Flag to control the lightsail instance creation. | `bool` | `true` | no |
 | managedby | ManagedBy, eg 'CloudDrove' or 'AnmolNagpal'. | `string` | `"anmol@clouddrove.com"` | no |
 | name | Name  (e.g. `app` or `cluster`). | `string` | `""` | no |
+| pgp\_key | Flag to control the instance creation. | `any` | `null` | no |
+| public\_key | The public key material. This public key will be imported into Lightsail. | `string` | `""` | no |
 | tags | Additional tags (e.g. map(`BusinessUnit`,`XYZ`). | `map` | `{}` | no |
-| use\_default\_key\_pair | Default key pair name will be used, you must keep 'key\_pair\_name' empty | `string` | `"true"` | no |
+| use\_default\_key\_pair | Default key pair name will be used, you must keep 'key\_pair\_name' empty | `bool` | `true` | no |
 | user\_data | launch script to configure server with additional user data | `string` | `""` | no |
 
 ## Outputs
