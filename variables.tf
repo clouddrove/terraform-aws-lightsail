@@ -1,13 +1,12 @@
 #Module      : LABEL
 #Description : Terraform label module variables.
-
 variable "environment" {
   type        = string
   description = "Environment, e.g. 'prod', 'staging', 'dev', 'pre-prod', 'UAT'"
 }
 
 variable "label_order" {
-  type        = list
+  type        = list(any)
   default     = []
   description = "Label order, e.g. `name`,`application`."
 }
@@ -20,14 +19,8 @@ variable "delimiter" {
 
 variable "repository" {
   type        = string
-  default     = ""
+  default     = "https://registry.terraform.io/modules/clouddrove/lightsail/aws/"
   description = "Terraform current module repo"
-
-  validation {
-    # regex(...) fails if it cannot find a match
-    condition     = can(regex("^https://", var.repository))
-    error_message = "The module-repo value must be a valid Git repo link."
-  }
 }
 
 
@@ -44,18 +37,19 @@ variable "managedby" {
 }
 
 variable "attributes" {
-  type        = list
+  type        = list(any)
   default     = []
   description = "Additional attributes (e.g. `1`)."
 }
 
 variable "tags" {
-  type        = map
+  type        = map(any)
   default     = {}
   description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)."
 }
 
-
+#Module      : Lightsail
+#Description : Terraform Lightsail module variables.
 variable "availability_zone" {
   type        = string
   default     = "ap-south-1a"

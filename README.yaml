@@ -40,7 +40,6 @@ usage: |-
       module "lightsail" {
         source        = "clouddrove/lightsail/aws"
         version       = "0.14.0"
-        repository    = "https://registry.terraform.io/modules/clouddrove/lambda-site-monitor/aws/0.14.0"
         environment   = "test"
         name          = "lightsail"
         key_pair_name = "testing"

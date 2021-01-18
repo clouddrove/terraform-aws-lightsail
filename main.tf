@@ -7,14 +7,14 @@
 #              for resources. You can use terraform-labels to implement a strict naming
 #              convention.
 module "labels" {
-  source = "git::https://github.com/clouddrove/terraform-labels.git?ref=tags/0.13.0"
+  source = "git::https://github.com/clouddrove/terraform-labels.git?ref=tags/0.14.0"
 
   name        = var.name
   repository  = var.repository
   environment = var.environment
-  label_order = var.label_order
   managedby   = var.managedby
-  enabled     = var.instance_enabled
+  attributes  = var.attributes
+  label_order = var.label_order
 }
 
 
@@ -24,7 +24,8 @@ data "aws_region" "default" {
 #Module      : Lightsail
 #Description : Terraform module to create an Lightsail instance resource on AWS with static IP and attachment.
 resource "aws_lightsail_instance" "instance" {
-  count             = var.instance_enabled ? var.instance_count : 0
+  count = var.instance_enabled ? var.instance_count : 0
+
   name              = format("%s%s%s", module.labels.id, "-", (count.index))
   availability_zone = var.availability_zone
   blueprint_id      = var.blueprint_id
@@ -44,14 +45,13 @@ resource "aws_lightsail_static_ip_attachment" "instance" {
   count          = var.instance_enabled && var.create_static_ip ? var.instance_count : 0
   static_ip_name = aws_lightsail_static_ip.instance[count.index].id
   instance_name  = aws_lightsail_instance.instance[count.index].id
-
 }
 
 resource "aws_lightsail_static_ip" "instance" {
   count = var.instance_enabled && var.create_static_ip ? var.instance_count : 0
   name  = format("%s-IP%s%s", module.labels.id, "-", (count.index))
-
 }
+
 resource "aws_lightsail_key_pair" "instance" {
   count      = var.instance_enabled && var.key_pair_name == "" && var.use_default_key_pair == false ? 1 : 0
   name       = format("%s-keypair", module.labels.id)

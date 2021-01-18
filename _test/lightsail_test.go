@@ -27,5 +27,5 @@ func Test(t *testing.T) {
 	Id := terraform.Output(t, terraformOptions, "id")
 
 	// Check that we get back the outputs that we expect
-	assert.Equal(t, "[\n  \"test-lightsail-clouddrove-0\",\n]", Id)
+	assert.Equal(t, "[\n  \"lightsail-test-0\",\n]", Id)
 }
