@@ -1,13 +1,12 @@
 #Module      : LABEL
 #Description : Terraform label module variables.
-
 variable "environment" {
   type        = string
   description = "Environment, e.g. 'prod', 'staging', 'dev', 'pre-prod', 'UAT'"
 }
 
 variable "label_order" {
-  type        = list
+  type        = list(any)
   default     = []
   description = "Label order, e.g. `name`,`application`."
 }
@@ -18,11 +17,12 @@ variable "delimiter" {
   description = "Delimiter to be used between `organization`, `environment`, `name` and `attributes`."
 }
 
-variable "application" {
+variable "repository" {
   type        = string
-  default     = ""
-  description = "Application (e.g. `cd` or `clouddrove`)."
+  default     = "https://registry.terraform.io/modules/clouddrove/lightsail/aws/"
+  description = "Terraform current module repo"
 }
+
 
 variable "name" {
   type        = string
@@ -32,39 +32,43 @@ variable "name" {
 
 variable "managedby" {
   type        = string
-  default     = "anmol@clouddrove.com"
-  description = "ManagedBy, eg 'CloudDrove' or 'AnmolNagpal'."
+  default     = "hello@clouddrove.com"
+  description = "ManagedBy, eg 'CloudDrove'."
 }
 
 variable "attributes" {
-  type        = list
+  type        = list(any)
   default     = []
   description = "Additional attributes (e.g. `1`)."
 }
 
 variable "tags" {
-  type        = map
+  type        = map(any)
   default     = {}
   description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)."
 }
 
-
+#Module      : Lightsail
+#Description : Terraform Lightsail module variables.
 variable "availability_zone" {
   type        = string
   default     = "ap-south-1a"
   description = "The Availability Zone in which to create your instance"
+  sensitive   = true
 }
 
 variable "blueprint_id" {
   type        = string
   default     = "ubuntu_16_04_2"
   description = "The ID for a virtual private server image"
+  sensitive   = true
 }
 
 variable "bundle_id" {
   type        = string
   default     = "micro_2_1"
   description = "The bundle of specification information"
+  sensitive   = true
 }
 
 
@@ -78,12 +82,14 @@ variable "user_data" {
   type        = string
   default     = ""
   description = "launch script to configure server with additional user data"
+  sensitive   = true
 }
 
 variable "create_static_ip" {
   type        = bool
   default     = false
   description = "Create and attach a statis IP to the instance"
+  sensitive   = true
 }
 
 variable "lightsail_enabled" {
@@ -96,6 +102,7 @@ variable "key_pair_name" {
   type        = string
   default     = ""
   description = "The key name to use for the instance."
+  sensitive   = true
 }
 
 variable "instance_count" {
@@ -113,16 +120,19 @@ variable "instance_enabled" {
 variable "pgp_key" {
   default     = null
   description = "Flag to control the instance creation."
+  sensitive   = true
 }
 
 variable "public_key" {
   type        = string
   default     = ""
   description = "The public key material. This public key will be imported into Lightsail."
+  sensitive   = true
 }
 
 variable "key_path" {
   type        = string
   default     = ""
   description = "Public key path  (e.g. `~/.ssh/id_rsa.pub`)."
+  sensitive   = true
 }
