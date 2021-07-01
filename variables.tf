@@ -19,7 +19,7 @@ variable "delimiter" {
 
 variable "repository" {
   type        = string
-  default     = "https://registry.terraform.io/modules/clouddrove/lightsail/aws/"
+  default     = "https://github.com/clouddrove/terraform-aws-lightsail"
   description = "Terraform current module repo"
 }
 
