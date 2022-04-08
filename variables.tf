@@ -98,6 +98,15 @@ variable "lightsail_enabled" {
   description = "Flag to control the lightsail instance creation."
 }
 
+variable "port_info" {
+  type = list(object({
+    protocol = string
+    port     = number
+    cidrs    = list(string)
+  }))
+  default = null
+}
+
 variable "key_pair_name" {
   type        = string
   default     = ""
@@ -135,4 +144,10 @@ variable "key_path" {
   default     = ""
   description = "Public key path  (e.g. `~/.ssh/id_rsa.pub`)."
   sensitive   = true
+}
+
+variable "domain_name" {
+  type        = string
+  default     = "mydomain.com"
+  description = "This is the name of the resource."
 }
