@@ -42,6 +42,24 @@ resource "aws_lightsail_instance" "instance" {
   )
 }
 
+resource "aws_lightsail_instance_public_ports" "public" {
+  instance_name = join("", aws_lightsail_instance.instance.*.name)
+
+  dynamic "port_info" {
+    for_each = var.port_info == null ? [] : var.port_info
+
+
+    content {
+
+      protocol  = port_info.value.protocol
+      from_port = port_info.value.port
+      to_port   = port_info.value.port
+      cidrs     = port_info.value.cidrs
+
+    }
+  }
+}
+
 resource "aws_lightsail_static_ip_attachment" "instance" {
   count          = var.instance_enabled && var.create_static_ip ? var.instance_count : 0
   static_ip_name = aws_lightsail_static_ip.instance[count.index].id
@@ -58,4 +76,8 @@ resource "aws_lightsail_key_pair" "instance" {
   name       = format("%s-keypair", module.labels.id)
   pgp_key    = var.pgp_key
   public_key = var.public_key == "" ? file(var.key_path) : var.public_key
+}
+
+resource "aws_lightsail_domain" "test" {
+  domain_name = var.domain_name
 }
