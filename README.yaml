@@ -17,7 +17,7 @@ github_repo: clouddrove/terraform-aws-lightsail
 # Badges to display
 badges:
   - name: "Terraform"
-    image: "https://img.shields.io/badge/Terraform-v1.1.7-green"
+    image: "https://img.shields.io/badge/terraform-v1.1.7-green"
     url: "https://www.terraform.io"
   - name: "Licence"
     image: "https://img.shields.io/badge/License-APACHE-blue.svg"
