@@ -15,10 +15,16 @@
 <p align="center">
 
 <a href="https://www.terraform.io">
-  <img src="https://img.shields.io/badge/Terraform-v0.15-green" alt="Terraform">
+  <img src="https://img.shields.io/badge/Terraform-v1.1.7-green" alt="Terraform">
 </a>
 <a href="LICENSE.md">
-  <img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="Licence">
+  <img src="https://img.shields.io/badge/License-APACHE-blue.svg" alt="Licence">
+</a>
+<a href="https://github.com/clouddrove/terraform-aws-lightsail/actions/workflows/tfsec.yml">
+  <img src="https://github.com/clouddrove/terraform-aws-lightsail/actions/workflows/tfsec.yml/badge.svg" alt="tfsec">
+</a>
+<a href="https://github.com/clouddrove/terraform-aws-lightsail/actions/workflows/terraform.yml">
+  <img src="https://github.com/clouddrove/terraform-aws-lightsail/actions/workflows/terraform.yml/badge.svg" alt="static-checks">
 </a>
 
 
@@ -52,7 +58,7 @@ We have [*fifty plus terraform modules*][terraform_modules]. A few of them are c
 
 This module has a few dependencies: 
 
-- [Terraform 0.13](https://learn.hashicorp.com/terraform/getting-started/install.html)
+- [Terraform 1.x.x](https://learn.hashicorp.com/terraform/getting-started/install.html)
 - [Go](https://golang.org/doc/install)
 - [github.com/stretchr/testify/assert](https://github.com/stretchr/testify)
 - [github.com/gruntwork-io/terratest/modules/terraform](https://github.com/gruntwork-io/terratest)
@@ -74,7 +80,7 @@ Here is an example of how you can use this module in your inventory structure:
 ```hcl
     module "lightsail" {
       source        = "clouddrove/lightsail/aws"
-      version       = "0.15.0"
+      version       = "1.0.1"
       environment   = "test"
       name          = "lightsail"
       key_pair_name = "testing"
@@ -97,6 +103,7 @@ Here is an example of how you can use this module in your inventory structure:
 | bundle\_id | The bundle of specification information | `string` | `"micro_2_1"` | no |
 | create\_static\_ip | Create and attach a statis IP to the instance | `bool` | `false` | no |
 | delimiter | Delimiter to be used between `organization`, `environment`, `name` and `attributes`. | `string` | `"-"` | no |
+| domain\_name | This is the name of the resource. | `string` | `"mydomain.com"` | no |
 | environment | Environment, e.g. 'prod', 'staging', 'dev', 'pre-prod', 'UAT' | `string` | n/a | yes |
 | instance\_count | Number of instances to launch. | `number` | `1` | no |
 | instance\_enabled | Flag to control the instance creation. | `bool` | `true` | no |
@@ -107,6 +114,7 @@ Here is an example of how you can use this module in your inventory structure:
 | managedby | ManagedBy, eg 'CloudDrove'. | `string` | `"hello@clouddrove.com"` | no |
 | name | Name  (e.g. `app` or `cluster`). | `string` | `""` | no |
 | pgp\_key | Flag to control the instance creation. | `any` | `null` | no |
+| port\_info | n/a | <pre>list(object({<br>    protocol = string<br>    port     = number<br>    cidrs    = list(string)<br>  }))</pre> | `null` | no |
 | public\_key | The public key material. This public key will be imported into Lightsail. | `string` | `""` | no |
 | repository | Terraform current module repo | `string` | `"https://github.com/clouddrove/terraform-aws-lightsail"` | no |
 | tags | Additional tags (e.g. map(`BusinessUnit`,`XYZ`). | `map(any)` | `{}` | no |
