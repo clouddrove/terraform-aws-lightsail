@@ -29,7 +29,6 @@ badges:
     image: "https://github.com/clouddrove/terraform-aws-lightsail/actions/workflows/terraform.yml/badge.svg"
     url: "https://github.com/clouddrove/terraform-aws-lightsail/actions/workflows/terraform.yml"
 
-
 #  description of this project
 description: |-
   Terraform module to create Lightsail instance, Lightsail Key Pair
