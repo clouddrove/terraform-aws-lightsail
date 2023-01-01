@@ -92,12 +92,6 @@ variable "create_static_ip" {
   sensitive   = true
 }
 
-variable "lightsail_enabled" {
-  type        = bool
-  default     = true
-  description = "Flag to control the lightsail instance creation."
-}
-
 variable "port_info" {
   type = list(object({
     protocol = string

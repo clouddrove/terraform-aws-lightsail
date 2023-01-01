@@ -101,21 +101,20 @@ Here is an example of how you can use this module in your inventory structure:
 | availability\_zone | The Availability Zone in which to create your instance | `string` | `"ap-south-1a"` | no |
 | blueprint\_id | The ID for a virtual private server image | `string` | `"ubuntu_16_04_2"` | no |
 | bundle\_id | The bundle of specification information | `string` | `"micro_2_1"` | no |
-| create\_static\_ip | Create and attach a statis IP to the instance | `bool` | `false` | no |
+| create\_static\_ip | Create and attach a static IP to the instance | `bool` | `false` | no |
 | delimiter | Delimiter to be used between `organization`, `environment`, `name` and `attributes`. | `string` | `"-"` | no |
 | domain\_name | This is the name of the resource. | `string` | `"mydomain.com"` | no |
 | environment | Environment, e.g. 'prod', 'staging', 'dev', 'pre-prod', 'UAT' | `string` | n/a | yes |
 | instance\_count | Number of instances to launch. | `number` | `1` | no |
 | instance\_enabled | Flag to control the instance creation. | `bool` | `true` | no |
-| key\_pair\_name | The key name to use for the instance. | `string` | `""` | no |
-| key\_path | Public key path  (e.g. `~/.ssh/id_rsa.pub`). | `string` | `""` | no |
+| key\_pair\_name | The SSH key name to use for the instance. | `string` | `""` | no |
+| key\_path | Local filesystem path to public SSH key (e.g. `~/.ssh/id_rsa.pub`). Not used when variable `public_key` is provided. | `string` | `""` | no |
 | label\_order | Label order, e.g. `name`,`application`. | `list(any)` | `[]` | no |
-| lightsail\_enabled | Flag to control the lightsail instance creation. | `bool` | `true` | no |
 | managedby | ManagedBy, eg 'CloudDrove'. | `string` | `"hello@clouddrove.com"` | no |
 | name | Name  (e.g. `app` or `cluster`). | `string` | `""` | no |
 | pgp\_key | Flag to control the instance creation. | `any` | `null` | no |
 | port\_info | n/a | <pre>list(object({<br>    protocol = string<br>    port     = number<br>    cidrs    = list(string)<br>  }))</pre> | `null` | no |
-| public\_key | The public key material. This public key will be imported into Lightsail. | `string` | `""` | no |
+| public\_key | The public SSH key imported into Lightsail instance. Takes precedence over `key_path` variable. | `string` | `""` | no |
 | repository | Terraform current module repo | `string` | `"https://github.com/clouddrove/terraform-aws-lightsail"` | no |
 | tags | Additional tags (e.g. map(`BusinessUnit`,`XYZ`). | `map(any)` | `{}` | no |
 | use\_default\_key\_pair | Default key pair name will be used, you must keep 'key\_pair\_name' empty | `bool` | `true` | no |
