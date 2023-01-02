@@ -149,5 +149,5 @@ variable "key_path" {
 variable "domain_name" {
   description = "This is the name of the resource."
   type        = string
-  default     = null
+  default     = ""
 }
