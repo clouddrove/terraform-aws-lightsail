@@ -8,7 +8,7 @@
 #              convention.
 module "labels" {
   source  = "clouddrove/labels/aws"
-  version = "0.15.0"
+  version = "1.3.0"
 
   name        = var.name
   repository  = var.repository
@@ -79,5 +79,7 @@ resource "aws_lightsail_key_pair" "instance" {
 }
 
 resource "aws_lightsail_domain" "test" {
+  count = var.domain_name == "" ? 0 : 1
+
   domain_name = var.domain_name
 }
