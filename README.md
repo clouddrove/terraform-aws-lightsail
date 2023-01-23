@@ -80,7 +80,7 @@ Here is an example of how you can use this module in your inventory structure:
 ```hcl
     module "lightsail" {
       source        = "clouddrove/lightsail/aws"
-      version       = "1.0.1"
+      version       = "1.3.0"
       environment   = "test"
       name          = "lightsail"
       key_pair_name = "testing"
@@ -99,8 +99,8 @@ Here is an example of how you can use this module in your inventory structure:
 |------|-------------|------|---------|:--------:|
 | attributes | Additional attributes (e.g. `1`). | `list(any)` | `[]` | no |
 | availability\_zone | The Availability Zone in which to create your instance | `string` | `"ap-south-1a"` | no |
-| blueprint\_id | The ID for a virtual private server image | `string` | `"ubuntu_16_04_2"` | no |
-| bundle\_id | The bundle of specification information | `string` | `"micro_2_1"` | no |
+| blueprint\_id | The ID for a virtual private server image | `string` | `"ubuntu_20_04"` | no |
+| bundle\_id | The bundle of specification information | `string` | `"nano_2_1"` | no |
 | create\_static\_ip | Create and attach a statis IP to the instance | `bool` | `false` | no |
 | delimiter | Delimiter to be used between `organization`, `environment`, `name` and `attributes`. | `string` | `"-"` | no |
 | domain\_name | This is the name of the resource. | `string` | `"mydomain.com"` | no |
