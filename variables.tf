@@ -59,14 +59,14 @@ variable "availability_zone" {
 
 variable "blueprint_id" {
   type        = string
-  default     = "ubuntu_16_04_2"
+  default     = "ubuntu_20_04"
   description = "The ID for a virtual private server image"
   sensitive   = true
 }
 
 variable "bundle_id" {
   type        = string
-  default     = "micro_2_1"
+  default     = "nano_2_1"
   description = "The bundle of specification information"
   sensitive   = true
 }
