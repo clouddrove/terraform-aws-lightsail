@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "ap-south-1"
+  region = "us-east-1"
 }
 
 module "lightsail" {
@@ -9,8 +9,9 @@ module "lightsail" {
   name        = "lightsail"
   label_order = ["name", "environment"]
 
-  public_key           = "ssh-rsa AAAAB3NzaCrmXGb6068G+r3Q9PXtTs42tv1KoKxahY5vDo57RsPN+sQGPIVDclN6PbRm4c9guBwLBYFVQL4PvBOSYHrapXjbheebTQDQoyPV7SM7LK57J0BC8oEfcrTgCIdy9mIWAYFIeTWfj0Xw/c9thxNtSse9XTAH6esdasd+Sucn0XNRwxzM2yOufgfggXqiBWjU+bMDLfQ+QV6gd2kvnBv0wf22s9meldRPZttryhcIO6HfjbbDEk0Oyo66KI70034tVgvAN0"
+  public_key           = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDDIqppj2U2K8norJh5/gxz7sbSSseLSpKT2xjq/wc5c9L9NSc43TGoldnDYUjm79qAYMlwQHr0= test@test"
   use_default_key_pair = true
+  user_data            = file("${path.module}/lightsail.sh")
 
   port_info = [
     {

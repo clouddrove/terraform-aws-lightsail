@@ -42,17 +42,11 @@ variable "attributes" {
   description = "Additional attributes (e.g. `1`)."
 }
 
-variable "tags" {
-  type        = map(any)
-  default     = {}
-  description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)."
-}
-
 #Module      : Lightsail
 #Description : Terraform Lightsail module variables.
 variable "availability_zone" {
   type        = string
-  default     = "ap-south-1a"
+  default     = "us-east-1a"
   description = "The Availability Zone in which to create your instance"
   sensitive   = true
 }
@@ -66,7 +60,7 @@ variable "blueprint_id" {
 
 variable "bundle_id" {
   type        = string
-  default     = "nano_2_1"
+  default     = "nano_2_0"
   description = "The bundle of specification information"
   sensitive   = true
 }
@@ -78,24 +72,11 @@ variable "use_default_key_pair" {
   description = "Default key pair name will be used, you must keep 'key_pair_name' empty"
 }
 
-variable "user_data" {
-  type        = string
-  default     = ""
-  description = "launch script to configure server with additional user data"
-  sensitive   = true
-}
-
 variable "create_static_ip" {
   type        = bool
   default     = false
   description = "Create and attach a statis IP to the instance"
   sensitive   = true
-}
-
-variable "lightsail_enabled" {
-  type        = bool
-  default     = true
-  description = "Flag to control the lightsail instance creation."
 }
 
 variable "port_info" {
@@ -127,7 +108,8 @@ variable "instance_enabled" {
 }
 
 variable "pgp_key" {
-  default     = null
+  type        = string
+  default     = ""
   description = "Flag to control the instance creation."
   sensitive   = true
 }
@@ -148,6 +130,13 @@ variable "key_path" {
 
 variable "domain_name" {
   type        = string
-  default     = "mydomain.com"
+  default     = "clouddrove.ca"
   description = "This is the name of the resource."
 }
+variable "user_data" {
+  type        = string
+  default     = ""
+  description = " Single lined launch script as a string to configure server with additional user data."
+}
+
+
