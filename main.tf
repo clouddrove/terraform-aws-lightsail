@@ -18,10 +18,6 @@ module "labels" {
   label_order = var.label_order
 }
 
-
-data "aws_region" "default" {
-}
-
 #Module      : Lightsail
 #Description : Terraform module to create an Lightsail instance resource on AWS with static IP and attachment.
 resource "aws_lightsail_instance" "instance" {
@@ -33,6 +29,7 @@ resource "aws_lightsail_instance" "instance" {
   bundle_id         = var.bundle_id
   key_pair_name     = var.key_pair_name == "" && var.use_default_key_pair == false ? "${module.labels.id}-keypair" : var.key_pair_name
   depends_on        = [aws_lightsail_key_pair.instance]
+  user_data         = var.user_data
   tags = merge(
     module.labels.tags,
     {
@@ -43,14 +40,12 @@ resource "aws_lightsail_instance" "instance" {
 }
 
 resource "aws_lightsail_instance_public_ports" "public" {
-  instance_name = join("", aws_lightsail_instance.instance.*.name)
+  instance_name = join("", aws_lightsail_instance.instance[*].name)
 
   dynamic "port_info" {
     for_each = var.port_info == null ? [] : var.port_info
 
-
     content {
-
       protocol  = port_info.value.protocol
       from_port = port_info.value.port
       to_port   = port_info.value.port

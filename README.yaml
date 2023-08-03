@@ -4,7 +4,6 @@
 # Run `make readme` to rebuild the `README.md`
 #
 
-
 # Name of this project
 name: Terraform AWS Lightsail
 
@@ -16,18 +15,15 @@ github_repo: clouddrove/terraform-aws-lightsail
 
 # Badges to display
 badges:
-  - name: "Terraform"
-    image: "https://img.shields.io/badge/Terraform-v1.1.7-green"
-    url: "https://www.terraform.io"
-  - name: "Licence"
-    image: "https://img.shields.io/badge/License-APACHE-blue.svg"
-    url: "LICENSE.md"
+  - name: "Latest Release"
+    image: "https://img.shields.io/github/release/clouddrove/terraform-aws-lightsail.svg"
+    url: "https://github.com/clouddrove/terraform-aws-lightsail/releases/latest"
   - name: "tfsec"
     image: "https://github.com/clouddrove/terraform-aws-lightsail/actions/workflows/tfsec.yml/badge.svg"
     url: "https://github.com/clouddrove/terraform-aws-lightsail/actions/workflows/tfsec.yml"
-  - name: "static-checks"
-    image: "https://github.com/clouddrove/terraform-aws-lightsail/actions/workflows/terraform.yml/badge.svg"
-    url: "https://github.com/clouddrove/terraform-aws-lightsail/actions/workflows/terraform.yml"
+  - name: "Licence"
+    image: "https://img.shields.io/badge/License-APACHE-blue.svg"
+    url: "LICENSE.md"
 
 #  description of this project
 description: |-
@@ -38,6 +34,7 @@ description: |-
 include:
   - "terraform.md"
 
+# How to use this project
 # How to use this project
 usage: |-
   ### Simple Example
