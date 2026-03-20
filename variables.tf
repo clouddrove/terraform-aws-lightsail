@@ -138,5 +138,3 @@ variable "user_data" {
   default     = ""
   description = " Single lined launch script as a string to configure server with additional user data."
 }
-
-
