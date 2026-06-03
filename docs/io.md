@@ -34,3 +34,4 @@
 | instance\_name | The name of the Lightsail instance. |
 | ssh\_host\_public\_key | n/a |
 | tags | A mapping of tags to assign to the resource. |
+
