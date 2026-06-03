@@ -87,7 +87,7 @@ variable "port_info" {
     ipv6_cidrs        = optional(list(string))
     cidr_list_aliases = optional(list(string))
   }))
-  default = []
+  default = null
 }
 
 variable "key_pair_name" {

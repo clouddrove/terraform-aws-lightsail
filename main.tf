@@ -43,7 +43,7 @@ resource "aws_lightsail_instance_public_ports" "public" {
   instance_name = join("", aws_lightsail_instance.instance[*].name)
 
   dynamic "port_info" {
-    for_each = var.port_info == [] ? [] : var.port_info
+    for_each = var.port_info == null ? [] : var.port_info
 
     content {
       protocol          = port_info.value.protocol
