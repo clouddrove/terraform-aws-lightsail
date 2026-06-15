@@ -81,9 +81,11 @@ variable "create_static_ip" {
 
 variable "port_info" {
   type = list(object({
-    protocol = string
-    port     = number
-    cidrs    = list(string)
+    protocol          = string
+    port              = number
+    cidrs             = optional(list(string))
+    ipv6_cidrs        = optional(list(string))
+    cidr_list_aliases = optional(list(string))
   }))
   default = null
 }

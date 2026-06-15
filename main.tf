@@ -46,11 +46,12 @@ resource "aws_lightsail_instance_public_ports" "public" {
     for_each = var.port_info == null ? [] : var.port_info
 
     content {
-      protocol  = port_info.value.protocol
-      from_port = port_info.value.port
-      to_port   = port_info.value.port
-      cidrs     = port_info.value.cidrs
-
+      protocol          = port_info.value.protocol
+      from_port         = port_info.value.port
+      to_port           = port_info.value.port
+      cidrs             = try(port_info.value.cidrs, null)
+      ipv6_cidrs        = try(port_info.value.ipv6_cidrs, null)
+      cidr_list_aliases = try(port_info.value.cidr_list_aliases, null)
     }
   }
 }
