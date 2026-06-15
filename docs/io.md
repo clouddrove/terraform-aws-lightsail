@@ -18,7 +18,7 @@
 | managedby | ManagedBy, eg 'CloudDrove'. | `string` | `"hello@clouddrove.com"` | no |
 | name | Name  (e.g. `app` or `cluster`). | `string` | `""` | no |
 | pgp\_key | Flag to control the instance creation. | `string` | `""` | no |
-| port\_info | n/a | <pre>list(object({<br>    protocol = string<br>    port     = number<br>    cidrs    = list(string)<br>  }))</pre> | `null` | no |
+| port\_info | n/a | <pre>list(object({<br>    protocol          = string<br>    port              = number<br>    cidrs             = optional(list(string))<br>    ipv6_cidrs        = optional(list(string))<br>    cidr_list_aliases = optional(list(string))<br>  }))</pre> | `null` | no |
 | public\_key | The public key material. This public key will be imported into Lightsail. | `string` | `""` | no |
 | repository | Terraform current module repo | `string` | `"https://github.com/clouddrove/terraform-aws-lightsail"` | no |
 | use\_default\_key\_pair | Default key pair name will be used, you must keep 'key\_pair\_name' empty | `bool` | `true` | no |
